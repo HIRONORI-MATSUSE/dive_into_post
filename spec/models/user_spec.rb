@@ -16,7 +16,7 @@ RSpec.describe User, type: :model do
     let!(:not_created_user) { User.find_or_create_by_email('not_created_user@example.com') }
 
     it '引数で送られてきたアドレスを持っているUserがいたら、そのUserをfindしてインスタンスを返り値で返す' do
-      expect(User.find_or_create_by_email('created_user@example.com')).to eq created_user
+      expect(User.('created_user@example.com')).to eq created_user
     end
 
     it '引数で送られてきたアドレスを持っているUserがいなかったら、Userをcreateして、そのインスタンスを返す' do
