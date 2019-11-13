@@ -12,6 +12,7 @@ class Team < ApplicationRecord
   has_many :users, foreign_key: :keep_team_id
   mount_uploader :icon, ImageUploader
 
+  #認証されたユーザー
   def invite_member(user)
     assigns.create(user: user)
   end
