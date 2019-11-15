@@ -1,7 +1,7 @@
 class NewOwnerMailer < ApplicationMailer
-  def new_owner_mail(team)
+  def new_owner_mail(email, team)
+    @email = email
     @team = team
-
-    mail to: "自分のメールアドレス", subject: "新しいオーナーの確認メール"
+    mail to: @email, subject: "新しいオーナーの確認メール"
   end
 end

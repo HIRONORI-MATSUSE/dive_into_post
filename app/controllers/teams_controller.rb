@@ -65,10 +65,9 @@ class TeamsController < ApplicationController
 
   def change_team_owner
     if @team.owner.id == current_user.id
-      update_user_id = params[:select_user]
-      @team.owner_id = update_user_id
-      @team.update(team_params)
-      NewOwnerMailer.new_owner_mail(@team).deliver
+      @user = User.find(params[:select_user])
+      @team.update(owner_id: @user.id)
+      NewOwnerMailer.new_owner_mail(@user.email, @team.name).deliver
       redirect_to @team, notice: 'チームのオーナー権限を与えられました'
     else
       redirect_to @team, notice: '権限を与えられませんでした'
